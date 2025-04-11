@@ -1,0 +1,87 @@
+apiVersion: v1
+baseDomain: hipe.id.vn
+# Neu he thong dung proxy thi chung ta can khai bao ơ day
+#proxy:
+#  httpProxy: http://proxy.vnlabs.dev:8080
+#  httpsProxy: https://USERNAME:PASSWORD@proxy.example.com:PORT
+#  noProxy: <WILDCARD_OF_DOMAIN>,<PROVISIONING_NETWORK/CIDR>,<BMC_ADDRESS_RANGE/CIDR>
+#  ## example: 
+#  noProxy: .thanhnq.vnlabs.dev, 192.168.67.0/24
+compute:
+- architecture: amd64
+  hyperthreading: Enabled
+  name: worker
+  replicas: 2
+controlPlane:
+  architecture: amd64
+  hyperthreading: Enabled
+  name: master
+  replicas: 3
+metadata:
+  name: hp
+networking:
+  clusterNetwork:
+  - cidr: 10.18.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 198.18.118.0/24
+  networkType: OVNKubernetes
+  serviceNetwork:
+  - 172.30.0.0/16
+platform:
+  baremetal:
+    # Thêm dòng này nếu không sử dụng mạng provisioning riêng
+    # provisioningNetwork: Disabled
+    hosts:
+      - name: worker01
+        role: worker
+        bootMACAddress: 00:50:56:87:94:b1
+      - name: worker02
+        role: worker
+        bootMACAddress: 00:50:56:87:94:b2
+      - name: worker03
+        role: worker
+        bootMACAddress: 00:50:56:87:94:b3
+      - name: master01
+        role: master
+        bootMACAddress: 00:50:56:87:94:a1
+      - name: master02
+        role: master
+        bootMACAddress: 00:50:56:87:94:a2
+      - name: master03
+        role: master
+        bootMACAddress: 00:50:56:87:94:a3
+    apiVIPs: ["198.18.128.130"]
+    ingressVIPs: ["198.128.128.131"]
+pullSecret: '{"auths": { "quay.hipe.id.vn:8443": {"auth": "aW5pdDo3SlhCVGw5WTJLUzM1cHVmODA2VXFtYldQNEduMWd6ZA=="}}}'
+sshKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDYo93TOIId9mDkuI/VbWnLv9RLcYoTMIWRFv7TR4BLz3It6X0g6xyf2sZZosVn4CoZkYS+DllVFU4tfKny1q32d7vBxWUDkgJZQHDmgguFnJAi7VCNqOxdGjYnUUocSiN2GoPB9P6qreh2b92QlkqrhCfzr3MitOj7C+De6JCgCD67t9Eh3Kme3PFkH5W3nLDiEmGySEAEq5kilIRRrfRZ+mW1T2XgW8ETJ+2iGx25OzwYizYQjohKEjK4V1nUSP+ocR9P6QXtKkYrEsL1OYnzL9D4+KeOeCeA44fuxOq4lz+3OnkOwLVTj1knbmAM/uJM8YUWl7eOKjE4s4254yEUmwp3IH0itnAayD7qj9ZAbKbibTylNMAlB5EnkpKva0eINmQ1zpeD1O6wvQ+p/v/sqypjSevu7A+lr7gczff0l4jJxbWE0z8eKBoc8eG5qeVesg5Iw7Dg8R/QLp++mm+0SxrQmqG6LS+SK7plnCJaPlsi1BZTRAEDQFb3LGUTHZ8= hp@controller'
+imageContentSources:
+- mirrors:
+  - quay.hipe.id.vn:8443/openshift/release
+  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+- mirrors:
+  - quay.hipe.id.vn:8443/openshift/release-images
+  source: quay.io/openshift-release-dev/ocp-release
+additionalTrustBundle: |
+-----BEGIN CERTIFICATE-----
+MIIDtDCCApygAwIBAgIUdBVPUPU+vEreV+s68iJhBBkXFQcwDQYJKoZIhvcNAQEL
+BQAwaTELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAlZBMREwDwYDVQQHDAhOZXcgWW9y
+azENMAsGA1UECgwEUXVheTERMA8GA1UECwwIRGl2aXNpb24xGDAWBgNVBAMMD3F1
+YXkuaGlwZS5pZC52bjAeFw0yNTA0MTAwMzM0MjVaFw0yODAxMjkwMzM0MjVaMGkx
+CzAJBgNVBAYTAlVTMQswCQYDVQQIDAJWQTERMA8GA1UEBwwITmV3IFlvcmsxDTAL
+BgNVBAoMBFF1YXkxETAPBgNVBAsMCERpdmlzaW9uMRgwFgYDVQQDDA9xdWF5Lmhp
+cGUuaWQudm4wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDhyLHxGpg0
+rK1X2nMd9XyBBW4zIDlbUatylAG1tJcgTvSVZ1tyG/vQaPojSlMDC6X9SumhD2cS
+11wnmyu046yqsGLE1Wqv0HYwmEfMJdJjmFgUfc+Zn8yvQ3CdSQwnndIZEAz4TmRH
+WmL+3lC0M7K/59zOqM8ZLLJlE2ALfi2CL2CHRExCzg2SmSUwhLxiT34Biw36wHI6
+hl5kvd2c8MhXgLMb+YldLibgnMH2MBTTpfkgVLH1sqtHmAIAZqQ5ay3P+OrmKP7H
+27c8GraUovI3uOKASy55tMFWq+/zI7HjmmYlPO8zmcMuxnvDNDLVM19PuFrow5ca
+ezZRMlJrr/enAgMBAAGjVDBSMAsGA1UdDwQEAwIC5DATBgNVHSUEDDAKBggrBgEF
+BQcDATAaBgNVHREEEzARgg9xdWF5LmhpcGUuaWQudm4wEgYDVR0TAQH/BAgwBgEB
+/wIBATANBgkqhkiG9w0BAQsFAAOCAQEAbfT/FrIB7z7VA3es52q39SGSgEXtx6HZ
+vk1lqi0C/11VvfstTWPIySjwALPhpQcypc/SMICj5897EghVvISECLvv9/tYbEEV
+ZjmoS0muw/CKWqsFgvS5nuhmirFRsmu8gRr4mUiE/Vhgj3meZcHkNKS1JQsYqR1l
+QCPVavrnZTiH7srESDQ8NtZjEYJSWv30+m44zpxYN0WryeoK/ZozJV3bJhXuhDGw
+Zf8Zz4oPvYLJlNKdbu39va+70zm3gqMp/eBpr6AG3dDDwu1L+G6vmDBQ9S010gw3
+BrnZKyNnWSR+FOVL5Lkzyfza+HmlE+iHfyW3CWx2MVRkVJnlGA2U/g==
+-----END CERTIFICATE-----
