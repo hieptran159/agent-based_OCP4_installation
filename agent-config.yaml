@@ -1,0 +1,175 @@
+apiVersion: v1alpha1
+metadata:
+  name: hp
+rendezvousIP: 198.18.128.11
+hosts:
+  - hostname: master01.hp.hipe.id.vn
+    interfaces:
+     - name: ens192
+       macAddress: 00:50:56:87:94:a1
+    networkConfig:
+      interfaces:
+        - name: ens192
+          type: ethernet
+          state: up
+          mac-address: 00:50:56:87:94:a1
+          ipv4:
+            enabled: true
+            address:
+              - ip: 198.18.128.11
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 198.18.128.51 
+            - ns-b1.tenten.vn 
+            - ns-b2.tenten.vn 
+            - 198.18.128.11
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 192.168.68.254
+            next-hop-interface: ens192
+  - hostname: master02.hp.hipe.id.vn
+    interfaces:
+     - name: ens192
+       macAddress: 00:50:56:87:94:a2
+    networkConfig:
+      interfaces:
+        - name: ens192
+          type: ethernet
+          state: up
+          mac-address: 00:50:56:87:94:a2
+          ipv4:
+            enabled: true
+            address:
+              - ip: 198.18.128.12
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 198.18.128.51 
+            - ns-b1.tenten.vn 
+            - ns-b2.tenten.vn 
+            - 198.18.128.11
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 198.18.128.254
+            next-hop-interface: ens192
+  - hostname: master03.hp.hipe.id.vn
+    interfaces:
+     - name: ens192
+       macAddress: 00:50:56:87:94:a3
+    networkConfig:
+      interfaces:
+        - name: ens192
+          type: ethernet
+          state: up
+          mac-address: 00:50:56:87:94:a3
+          ipv4:
+            enabled: true
+            address:
+              - ip: 198.18.128.13
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 198.18.128.51 
+            - ns-b1.tenten.vn 
+            - ns-b2.tenten.vn 
+            - 198.18.128.11
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 198.18.128.254
+            next-hop-interface: ens192
+  - hostname: worker01.hp.hipe.id.vn
+    interfaces:
+     - name: ens192
+       macAddress: 00:50:56:87:94:b1
+    networkConfig:
+      interfaces:
+        - name: ens192
+          type: ethernet
+          state: up
+          mac-address: 00:50:56:87:94:b1
+          ipv4:
+            enabled: true
+            address:
+              - ip: 198.18.128.21
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 198.18.128.51 
+            - ns-b1.tenten.vn 
+            - ns-b2.tenten.vn 
+            - 198.18.128.11
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 198.18.128.254
+            next-hop-interface: ens192            
+  - hostname: worker02.hp.hipe.id.vn
+    interfaces:
+     - name: ens192
+       macAddress: 00:50:56:87:94:b2
+    networkConfig:
+      interfaces:
+        - name: ens192
+          type: ethernet
+          state: up
+          mac-address: 00:50:56:87:94:b2
+          ipv4:
+            enabled: true
+            address:
+              - ip: 198.18.128.22
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 198.18.128.51 
+            - ns-b1.tenten.vn 
+            - ns-b2.tenten.vn 
+            - 198.18.128.11
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 198.18.128.254
+            next-hop-interface: ens192
+  - hostname: worker03.hp.hipe.id.vn
+    interfaces:
+     - name: ens192
+       macAddress: 00:50:56:87:94:b3
+    networkConfig:
+      interfaces:
+        - name: ens192
+          type: ethernet
+          state: up
+          mac-address: 00:50:56:87:94:b3
+          ipv4:
+            enabled: true
+            address:
+              - ip: 198.18.128.23
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 198.18.128.51 
+            - ns-b1.tenten.vn 
+            - ns-b2.tenten.vn 
+            - 198.18.128.11
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 198.18.128.254
+            next-hop-interface: ens192           
+ 
+            
