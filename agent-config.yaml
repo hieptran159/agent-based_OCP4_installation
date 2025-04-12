@@ -22,11 +22,11 @@ hosts:
       dns-resolver:
         config:
           server:
-            - 198.18.128.50 
+            - 198.18.128.200 
       routes:
         config:
           - destination: 0.0.0.0/0
-            next-hop-address: 192.168.68.254
+            next-hop-address: 198.18.128.1
             next-hop-interface: ens192
   - hostname: master02.hp.hipe.id.vn
     interfaces:
@@ -47,11 +47,11 @@ hosts:
       dns-resolver:
         config:
           server:
-            - 198.18.128.50 
+            - 198.18.128.200 
       routes:
         config:
           - destination: 0.0.0.0/0
-            next-hop-address: 198.18.128.254
+            next-hop-address: 198.18.128.1
             next-hop-interface: ens192
   - hostname: master03.hp.hipe.id.vn
     interfaces:
@@ -72,11 +72,11 @@ hosts:
       dns-resolver:
         config:
           server:
-            - 198.18.128.50 
+            - 198.18.128.200 
       routes:
         config:
           - destination: 0.0.0.0/0
-            next-hop-address: 198.18.128.254
+            next-hop-address: 198.18.128.1
             next-hop-interface: ens192
   - hostname: worker01.hp.hipe.id.vn
     interfaces:
@@ -97,11 +97,11 @@ hosts:
       dns-resolver:
         config:
           server:
-            - 198.18.128.50 
+            - 198.18.128.200 
       routes:
         config:
           - destination: 0.0.0.0/0
-            next-hop-address: 198.18.128.254
+            next-hop-address: 198.18.128.1
             next-hop-interface: ens192            
   - hostname: worker02.hp.hipe.id.vn
     interfaces:
@@ -122,11 +122,11 @@ hosts:
       dns-resolver:
         config:
           server:
-            - 198.18.128.50 
+            - 198.18.128.200 
       routes:
         config:
           - destination: 0.0.0.0/0
-            next-hop-address: 198.18.128.254
+            next-hop-address: 198.18.128.1
             next-hop-interface: ens192
   - hostname: worker03.hp.hipe.id.vn
     interfaces:
@@ -147,11 +147,10 @@ hosts:
       dns-resolver:
         config:
           server:
-            - 198.18.128.50 
+            - 198.18.128.200 
       routes:
         config:
           - destination: 0.0.0.0/0
-            next-hop-address: 198.18.128.254
+            next-hop-address: 198.18.128.1
             next-hop-interface: ens192           
  
-            
