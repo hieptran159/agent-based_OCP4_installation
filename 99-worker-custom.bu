@@ -14,8 +14,8 @@ storage:
       overwrite: true
       contents:
         inline: |
-                pool 198.18.128.50 prefer iburst
-                pool 198.18.128.254 iburst
+                pool 1.vn.pool.ntp.org prefer iburst
+                pool 198.18.128.200 iburst
                 driftfile /var/lib/chrony/drift
                 makestep 1.0 3
                 rtcsync
