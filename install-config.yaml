@@ -11,7 +11,7 @@ compute:
 - architecture: amd64
   hyperthreading: Enabled
   name: worker
-  replicas: 2
+  replicas: 3
 controlPlane:
   architecture: amd64
   hyperthreading: Enabled
