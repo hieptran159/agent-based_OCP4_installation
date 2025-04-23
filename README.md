@@ -1,6 +1,8 @@
 # agent-based_OCP4_installation
-Đây là bản copy tutorial từ RedhatVN. source: https://github.com/vnlabs-ops/agent-based-ocp4-installation/
-#Lưu ý khi cài RHEL8 nên phân vùng vì khi cài data sẽ được lưu vào /var rất dễ bị tràn ổ -> nên mount /var có dung lượng lớn
+Đây là bản copy tutorial từ RedhatVN. source: https://github.com/vnlabs-ops/agent-based-ocp4-installation/  
+#Lưu ý khi cài RHEL8 nên phân vùng vì khi cài data sẽ được lưu vào /var rất dễ bị tràn ổ -> nên mount /var có dung lượng lớn  
+![image](https://github.com/user-attachments/assets/2f84d552-bc1f-4449-86d4-8868d793f027)
+
 
 
 # Cài đặt Openshift 4 trong môi trường không có kết nối internet
