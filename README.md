@@ -36,8 +36,8 @@ Trước khi thực hiện chúng ta cần truy cập vào [https://console.redh
 
 Copy các file download về bastion host, thư mục _/home/user_
 ```
-wget https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable-4.12/openshift-install-linux.tar.gz 
-wget https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable-4.12/openshift-client-linux.tar.gz 
+wget https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable-4.18/openshift-install-linux.tar.gz 
+wget https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable-4.18/openshift-client-linux.tar.gz 
 tar zxf openshift-client-linux.tar.gz
 tar zxf openshift-install-linux.tar.gz
 mkdir /home/hp/bin
