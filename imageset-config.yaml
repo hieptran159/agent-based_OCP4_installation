@@ -7,10 +7,10 @@ storageConfig:
 mirror:
   platform:
     channels:
-    - name: stable-4.12
+    - name: stable-4.18
       type: ocp
   operators:
-  - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.12
+  - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.18
     packages:
       - name: 3scale-operator
         channels:
@@ -98,10 +98,10 @@ mirror:
         - name: stable
       - name: lvms-operator
         channels:
-        - name: stable-4.12
+        - name: stable-4.18
       - name: mcg-operator
         channels:
-        - name: stable-4.12
+        - name: stable-4.18
       - name: mta-operator
         channels:
         - name: stable-v7.2
@@ -125,22 +125,22 @@ mirror:
         - name: stable
       - name: ocs-operator
         channels:
-        - name: stable-4.12
+        - name: stable-4.18
       - name: odf-csi-addons-operator
         channels:
-        - name: stable-4.12
+        - name: stable-4.18
       - name: odf-multicluster-orchestrator
         channels:
-        - name: stable-4.12
+        - name: stable-4.18
       - name: odf-operator
         channels:
-        - name: stable-4.12
+        - name: stable-4.18
       - name: odr-cluster-operator
         channels:
-        - name: stable-4.12
+        - name: stable-4.18
       - name: odr-hub-operator
         channels:
-        - name: stable-4.12
+        - name: stable-4.18
       - name: openshift-cert-manager-operator
         channels:
         - name: stable-v1
