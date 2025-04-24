@@ -1,0 +1,97 @@
+apiVersion: v1
+baseDomain: hipe.id.vn
+compute:
+- architecture: amd64
+  hyperthreading: Enabled
+  name: worker
+  replicas: 3
+controlPlane:
+  architecture: amd64
+  hyperthreading: Enabled
+  name: master
+  replicas: 3
+metadata:
+  name: hp
+networking:
+  clusterNetwork:
+  - cidr: 10.16.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 198.18.2.0/24
+  networkType: OVNKubernetes
+  serviceNetwork:
+  - 172.30.0.0/16
+platform:
+  baremetal:
+    provisioningNetwork: Disabled
+    hosts:
+      - name: worker01
+        role: worker
+        bootMACAddress: 00:50:56:87:94:b1
+      - name: worker02
+        role: worker
+        bootMACAddress: 00:50:56:87:94:b2
+      - name: worker03
+        role: worker
+        bootMACAddress: 00:50:56:87:94:b3
+      - name: master01
+        role: master
+        bootMACAddress: 00:50:56:87:94:a1
+      - name: master02
+        role: master
+        bootMACAddress: 00:50:56:87:94:a2
+      - name: master03
+        role: master
+        bootMACAddress: 00:50:56:87:94:a3
+    apiVIPs: ["198.18.2.12"]
+    ingressVIPs: ["198.18.2.11"]
+pullSecret: '{
+  "auths": {
+    "cloud.openshift.com": {
+      "auth": "b3BlbnNoaWZ0LXJlbGVhc2UtZGV2K29jbV9hY2Nlc3NfNmFjMGYzZGVhZTE4NDcxZGFmMzYxMTU3OTM3ZDVlMjA6WVM5WExNTUdURlJLTTJRVVNTS0lKNkI1QjhQSkw2QTAwOEZBVlk3UEZEOTRGM09KUFNYMjIwUENFNlU3QkkxSQ=="
+    },
+    "quay.hipe.id.vn:8443": {
+      "auth": "aW5pdDpDTlJtODl5WGtRNUZ3aTYwM0t2NFpXZmcySmE3MWJvbg=="
+    },
+    "quay.io": {
+      "auth": "b3BlbnNoaWZ0LXJlbGVhc2UtZGV2K29jbV9hY2Nlc3NfNmFjMGYzZGVhZTE4NDcxZGFmMzYxMTU3OTM3ZDVlMjA6WVM5WExNTUdURlJLTTJRVVNTS0lKNkI1QjhQSkw2QTAwOEZBVlk3UEZEOTRGM09KUFNYMjIwUENFNlU3QkkxSQ=="
+    },
+    "registry.connect.redhat.com": {
+      "auth": "fHVoYy1wb29sLTMxM2JmMTU3LTZmYzYtNDQ3Zi05ZmIxLWMxOTg3OTU2Mjc5MDpleUpoYkdjaU9pSlNVelV4TWlKOS5leUp6ZFdJaU9pSmlNakEzTmpReFpqRmtZbU0wWkdFMVltWTFPVGhqTURneU5UTmhOekkzTWlKOS5NRU5XQk81c0xCc21oeXFHRkQ0WERONWVzRmw5eENLcDRaRHRfYjRQcFIwMGdaVDdTUXZQZGR3WXFOb1BiQTh2ZXJVNzVuQXlEbEhvWFNRQ21vNlNDQ2xhendVbzdXWVY2Zl81cldFcU5CZEt5NDhiTTFMTFpWVFJqdnFWTHp2WlhPb1J5NFRZMmVHbFZvMkJoQ3BhdG1rMlM2RmhfZW1sVzNRQUVST0tGV19zYmxKSjZHQlBLM19Mcy1OVUVfcTB5dVZTTWwzREN0aVFObHpIZUxjTFA5b21YM0dPa1QxcEpubHRJYmNaX1lsbkZTRTVlcVFZRWdTaTMtYTdVY3ItTEdvZXk4a09DVUJGOTRWUUtwdDNQcEJ2OEVuWWJlc2RFWjhESzN4Z1ZRcXZVckFlOFJISjFZSVdXV2NYWERPeXU3cXlMakFyR3RmTUs0dmdxcHFocjFNNUpxM1NCVVd3d2hnSk1CMXh4ZHNRbXZzbkh5MWxhaDROQzY0VE9paG1ULXRXOHJwUnB0X3ktazgyYUdmODlEMFd1bHNHVnBCLUUwajRYSnNEOVVNWVU1eVZleXd6SE1jdV9idDk1SWIyd20xLVRHN0c1ckpoTWhJNnVQMXkwbnVwelc1VG1Bdms0R25qVTMwWUNpWUdmc1NYOE5YQmhReGpYNWtPdnprOHhqVFZsa241aW02cktXcGYwRW8yMWt1TS1FOGpFb1R5N0JkeTJXVkVpUER1RGhTcGRmRGlwTzZubWhSNEpoSUI4SXVXaVZ4ckhFalFzYU9OTFZpazdTaklrY2RWVkJvYWlfc0pDTGZISi1mLVF5Y1hBTVVqVHpQRWRzOVNpbmlzNjluOTB1UEdaLUV1c2h3eWRBWFE5OW9zaTc1MlA1ZDFuQloxTjZCVGhkZw=="
+    },
+    "registry.redhat.io": {
+      "auth": "fHVoYy1wb29sLTMxM2JmMTU3LTZmYzYtNDQ3Zi05ZmIxLWMxOTg3OTU2Mjc5MDpleUpoYkdjaU9pSlNVelV4TWlKOS5leUp6ZFdJaU9pSmlNakEzTmpReFpqRmtZbU0wWkdFMVltWTFPVGhqTURneU5UTmhOekkzTWlKOS5NRU5XQk81c0xCc21oeXFHRkQ0WERONWVzRmw5eENLcDRaRHRfYjRQcFIwMGdaVDdTUXZQZGR3WXFOb1BiQTh2ZXJVNzVuQXlEbEhvWFNRQ21vNlNDQ2xhendVbzdXWVY2Zl81cldFcU5CZEt5NDhiTTFMTFpWVFJqdnFWTHp2WlhPb1J5NFRZMmVHbFZvMkJoQ3BhdG1rMlM2RmhfZW1sVzNRQUVST0tGV19zYmxKSjZHQlBLM19Mcy1OVUVfcTB5dVZTTWwzREN0aVFObHpIZUxjTFA5b21YM0dPa1QxcEpubHRJYmNaX1lsbkZTRTVlcVFZRWdTaTMtYTdVY3ItTEdvZXk4a09DVUJGOTRWUUtwdDNQcEJ2OEVuWWJlc2RFWjhESzN4Z1ZRcXZVckFlOFJISjFZSVdXV2NYWERPeXU3cXlMakFyR3RmTUs0dmdxcHFocjFNNUpxM1NCVVd3d2hnSk1CMXh4ZHNRbXZzbkh5MWxhaDROQzY0VE9paG1ULXRXOHJwUnB0X3ktazgyYUdmODlEMFd1bHNHVnBCLUUwajRYSnNEOVVNWVU1eVZleXd6SE1jdV9idDk1SWIyd20xLVRHN0c1ckpoTWhJNnVQMXkwbnVwelc1VG1Bdms0R25qVTMwWUNpWUdmc1NYOE5YQmhReGpYNWtPdnprOHhqVFZsa241aW02cktXcGYwRW8yMWt1TS1FOGpFb1R5N0JkeTJXVkVpUER1RGhTcGRmRGlwTzZubWhSNEpoSUI4SXVXaVZ4ckhFalFzYU9OTFZpazdTaklrY2RWVkJvYWlfc0pDTGZISi1mLVF5Y1hBTVVqVHpQRWRzOVNpbmlzNjluOTB1UEdaLUV1c2h3eWRBWFE5OW9zaTc1MlA1ZDFuQloxTjZCVGhkZw=="
+    }
+  }
+}'
+sshKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDCWAwZHsb6HWSzHtW5kavAoLkI9DE8kHbw/txuVYXqWOMWxbrtUAdQfO6gxVMgv70TYnuOSZ6YN/8K5IXW3BuhpO0/17pSNpoVOYBOFzLK6I3hmlLr+da0SKaUjh75eGea95/mjvFz6jV8wDFdmIL/Q7SfNVlWCNIu8hpy2yUOEfQF2E9+2fsdHdbAUULRHC3q1RN0Yc/JHKDmg9jF5XQHcFZrWLk8K+2d0a8+nlmh9rcAFAUMyh6VIIqLoWGEuBBwfCMsLpM2ebydwS86lNi/zrQN3/FKTv1kiMePEtMrzDRxMp/lXTwX6RRI9cALXt8XqhO7ZKcwaJMNLXG7k5hdhj0VfQiQshTXEqaTNPPCzaj033Ft7mhY0Wf1z0UmHLPceW7QYpRBaF6T4AQ9lrl6G4X1u/K3rjnwd9BZWVsCdYMgvJCgwDXJGZpMIlv3BeZtgSls+QY8PWWjN1gJyraj/HRE7pRPWXJwxnMwpkpcqnNcnZvVtWQHe468gBsjoCM= hp@controller'
+imageDigestSources:
+- mirrors:
+  - quay.hipe.id.vn:8443/openshift/release
+  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+- mirrors:
+  - quay.hipe.id.vn:8443/openshift/release-images
+  source: quay.io/openshift-release-dev/ocp-release
+additionalTrustBundle: |
+ -----BEGIN CERTIFICATE-----
+ MIIDtDCCApygAwIBAgIUWYCCp0RpFZJ143gUNSgyfXNA3RcwDQYJKoZIhvcNAQEL
+ BQAwaTELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAlZBMREwDwYDVQQHDAhOZXcgWW9y
+ azENMAsGA1UECgwEUXVheTERMA8GA1UECwwIRGl2aXNpb24xGDAWBgNVBAMMD3F1
+ YXkuaGlwZS5pZC52bjAeFw0yNTA0MjMwNjMzNTNaFw0yODAyMTEwNjMzNTNaMGkx
+ CzAJBgNVBAYTAlVTMQswCQYDVQQIDAJWQTERMA8GA1UEBwwITmV3IFlvcmsxDTAL
+ BgNVBAoMBFF1YXkxETAPBgNVBAsMCERpdmlzaW9uMRgwFgYDVQQDDA9xdWF5Lmhp
+ cGUuaWQudm4wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDAIgtUyhAu
+ jfAmUHwXuFnBpBf8nq3qeDl2eZGTNUG3sKQ7Uj8sBlIirs7sfK+3OZghlnZcRyE/
+ wFfaTAsi8sJ7f3IVJVtxmBI3pWz+Ztmu6800NXz7MV08TKXJPrjHqsb/Tr7BQOx9
+ mExtD8X2JvH4IFi++pP34gyPgzKIIPRp04fXj/804RkBH3rORPVo4VC4Ow6EkvbW
+ QqbgDaT5ULofS7/cQ9TR6k3XpggfrkpCbN5tNVcs4tcKW7vE7z+Bv5QxOIx3DZcC
+ uIxQu1IrHbZjv1fhIpmUK/OIt9mZThdxgCr842uwA2opND9UC/uArUS/HjamdvDa
+ LOrlK1kn+67hAgMBAAGjVDBSMAsGA1UdDwQEAwIC5DATBgNVHSUEDDAKBggrBgEF
+ BQcDATAaBgNVHREEEzARgg9xdWF5LmhpcGUuaWQudm4wEgYDVR0TAQH/BAgwBgEB
+ /wIBATANBgkqhkiG9w0BAQsFAAOCAQEABjjrg/BmhygcytFhMFuc5cj8FeciM1FS
+ xwTbNLDHwxagrm0H/mJ19mVQ7KNFHgltb3wxCeAYL7S17ya095pCZNw56ld8fmb3
+ abaIHSEvU9jWmSRgeHTYJQ4ZGWe/hHLiXIfKZFkHxHjtz2uEWqA1XNlnmKtvwj8g
+ tuHAIQG5xTTmo1su4qQjttuQ1LmFOxyNAKkzsIlv3EM+KZZM5SPEB/SeFLctpMzl
+ Agg/n/7B8ZtT/i0C+KHDTuHHQrTgr0M0S06JHuqypSIQFSpbTMVGIsHTC4KCz9FU
+ YKzz5mI9o06nQQ7FrPuOD73KD8+Lq2KUzy5p5xHvbFVeeo6rg8PocA==
+ -----END CERTIFICATE-----
