@@ -466,8 +466,12 @@ Note-------------
 
 	sudo bash -c 'cp /quay/quay-rootCA/rootCA* /etc/pki/ca-trust/source/anchors/ -v'
 
-
+	Debug: 
+ 	openshift-install gather bootstrap
+ 	
 	add host master:
-198.18.128.130 api.hp.hipe.id.vn
-198.18.128.131 *.apps.hp.hipe.id.vn apps.hp.hipe.id.vn
+	198.18.128.130 api.hp.hipe.id.vn
+	198.18.128.131 *.apps.hp.hipe.id.vn apps.hp.hipe.id.vn
+
+  	
 	
