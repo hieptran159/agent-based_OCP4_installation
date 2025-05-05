@@ -1,0 +1,8 @@
+# Error: There are no enabled repositories in "/etc/yum.repos.d", "/etc/yum/repos.d", "/etc/distro.repos.d"  
+  sudo subscription-manager repos \
+  --enable=rhel-8-baseos-rpms \
+  --enable=rhel-8-appstream-rpms \
+  --enable=codeready-builder-for-rhel-8-x86_64-rpms
+  sudo yum clean all
+  sudo yum makecache
+
