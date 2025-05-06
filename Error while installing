@@ -5,4 +5,7 @@
   --enable=codeready-builder-for-rhel-8-x86_64-rpms
   sudo yum clean all
   sudo yum makecache
+# Skipping ISO extraction; \"oc\" command is not available"
+  "Failed to extract base ISO from release payload - check registry configuration"
+  => Cài đặt DNS trên host đấy để trỏ tới registry (Do đặt hostname)
 
