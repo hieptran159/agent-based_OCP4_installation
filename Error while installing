@@ -7,5 +7,8 @@
   sudo yum makecache
 # Skipping ISO extraction; \"oc\" command is not available"
   "Failed to extract base ISO from release payload - check registry configuration"
-  => Cài đặt DNS trên host đấy để trỏ tới registry (Do đặt hostname)
+  => Do không thể truy cập tới quay.hipe.id.vn:8443, thường sẽ là file iso có tên:coreos-x86_64 
+        ở path: /home/hp/.cache/agent/image_cache/coreos-x86_64.iso
+  => kiểm tra Cài đặt DNS trên host đấy để trỏ tới registry (Do đặt hostname), 
+      nếu đã cài thì kiểm tra podman login vào reg chưa và nếu không được thì phải kết nối card mạng (bỏ tích connect trong vsphere có thể sẽ bị lỗi)
 
